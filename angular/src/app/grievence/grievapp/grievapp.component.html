@@ -3,21 +3,55 @@
 		<h3 class="w3-text-teal">New Registration Found... Want to keep the following settings?</h3>
 	</div> -->
 	<!-- <h1 class="w3-text-blue">Welcome {{userdetails?.username}}</h1> -->
-	<form name="grieveForm" #grieveForm="ngForm" (submit)="formSubmit()">
+	<form name="grieveForm" #grieveForm="ngForm" (submit)="formSubmit(grieveForm.value)">
 		<table style="border-collapse: collapse;border-spacing: 10px;">
 			<tr>
 				<td><i class="fa fa-location-arrow  w3-xxlarge w3-text-blue"></i></td>
-				<td class="one"><b><label for="state" >Region</label></b></td>
+				<td class="one"><b><label for="state" >State</label></b></td>
 				<td>
-				<select>
-  					<option *ngFor="let state of states.names" [value]="selectedState" #state="ngModel">{{state.name}}</option>
+				<select [(ngModel)]="selectedState" name="state" #state="ngModel">
+  					<option *ngFor="let state of states.names" [value]="state.name">{{state.name}}</option>
   				</select>
 				</td>
 			</tr>
+
+			<tr>
+				<td><i class="fa fa-location-arrow  w3-xxlarge w3-text-blue"></i></td>
+				<td class="one"><b><label for="region">Region</label></b></td>
+				<td>
+				<select [(ngModel)]="selectedRegion" name="region" #region="ngModel">
+  					<option *ngFor="let region of states.region" [value]="region.name">{{region.name}}</option>
+  				</select>
+				</td>
+			</tr>
+
+			<tr>
+				<td><i class="fa fa-location-arrow  w3-xxlarge w3-text-blue"></i></td>
+				<td class="one"><b><label for="dept" >Department</label></b></td>
+				<td>
+				<select [(ngModel)]="selectedDept" name="dept" #dept="ngModel">
+  					<option *ngFor="let dept of states.dept" [value]="dept.name">{{dept.name}}</option>
+  				</select>
+				</td>
+			</tr>
+
+
+			<tr>
+				<td><i class="fa fa-location-arrow  w3-xxlarge w3-text-blue"></i></td>
+				<td class="one"><b><label for="grieve" >Grievance</label></b></td>
+				<td>
+					<input type="text" name="grieve" [(ngModel)]="grieveText" #grieve="ngModel" height="500px" width="600px">
+				</td>
+			</tr>
+
+
+
+
 			<!-- <input type="hidden" value="userdetails?.flag" [(ngModel)]="userdetails.flag" #flag="ngModel" name="flag" id="flag"/>
 			<input type="hidden" value="userdetails?.providerUserId" 
 			[(ngModel)]="userdetails.providerUserId" #providerUserId="ngModel" name="providerUserId" providerUserId="providerUserId"/> -->
 		</table>	
+		<input [disabled]="grieveForm.invalid" type="submit" value="Update Fields" name="update" class="w3-btn w3-blue"/>
 		<!-- <div *ngIf="userdetails?.role==='admin'">
 				<input type="button" (click) ="viewuserdetailpage()" class="w3-btn w3-blue" value="Click Here to View Users"/>
 		</div>
