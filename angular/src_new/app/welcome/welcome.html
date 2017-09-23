@@ -1,0 +1,130 @@
+<div class="container">
+	<div *ngIf="userdetails?.flag==false">
+		<h3 class="w3-text-teal">New Registration Found... Want to keep the following settings?</h3>
+	</div>
+	<h1 class="w3-text-blue">Welcome {{userdetails?.username}}</h1>
+	<form (ngSubmit)="onSubmit()">
+		<table style="border-collapse: collapse;border-spacing: 10px;">
+			<tr>
+				<td><i class="fa fa-user  w3-xxlarge w3-text-blue"></i></td>
+				<td class="one"><b><label for="username" >UserName</label></b></td>
+				<td><input placeholder="User Name" class="form-control" name="username" 
+					id="username" style="width: 150%; border-radius: 25px;"
+					type="text" value="{{userdetails.username}}" [(ngModel)]="userdetails.username" 
+					required #username="ngModel" />
+					<div [hidden]="username.valid || username.pristine">
+						User Name required
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td><i class="fa fa-user-circle  w3-xxlarge w3-text-blue"></i></td>
+				<td class="one"><b>FirstName</b></td>
+				<td><input placeholder="First Name" class="form-control w3-input" name="firstname" id="firstname" style="width: 150%; border-radius: 25px;"
+					[(ngModel)]="userdetails.firstname" type="text" value="{{userdetails.firstname}}" required #firstname="ngModel" />
+				<div [hidden]="firstname.valid || firstname.pristine">
+						First Name required
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td><i class="fa fa-user-o  w3-xxlarge w3-text-blue"></i></td>
+				<td class="one"><b>LastName</b></td>
+				<td><input placeholder="Last Name" name="lastname" id="lastname" style="width: 150%; border-radius: 25px;" class="form-control w3-input"
+					 type="text" value="{{userdetails.lastname}}" [(ngModel)]="userdetails.lastname" required #lastname="ngModel" />
+					  <div [hidden]="lastname.valid || lastname.pristine">
+						Last Name required
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td><i class="glyphicon glyphicon-envelope  w3-xxlarge w3-text-blue"></i></td>
+				<td class="one"><b>Email</b></td>
+				<td><input placeholder="Email" name="email" id="email" style="width: 150%; border-radius: 25px;" class="form-control w3-input" type="text"
+					 value="{{userdetails.email}}" [(ngModel)]="userdetails.email" required #email="ngModel" />
+					 <div [hidden]="email.valid || email.pristine" >
+						Email required
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td><i class="material-icons  w3-xxlarge w3-text-blue">location_on</i></td>
+				<td class="one"><b>Location</b></td>
+				<td><input placeholder="Location" name="location" id="location" style="width: 150%; border-radius: 25px;" class="form-control w3-input"
+					 type="text" value="{{userdetails.location}}" [(ngModel)]="userdetails.location" required #location="ngModel" />
+					  <div [hidden]="location.valid || location.pristine" >
+						Location required
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td><i class="fa fa-industry  w3-xxlarge w3-text-blue"></i></td>
+				<td class="one"><b>Industry</b></td>
+				<td><input placeholder="Industry" name="industry" id="industry" style="width: 150%; border-radius: 25px;" class="form-control w3-input"
+					 type="text" value="{{userdetails.industry}}" [(ngModel)]="userdetails.industry" required #industry="ngModel" />
+					  <div [hidden]="industry.valid || industry.pristine" >
+						Industry required
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td><i class="fa fa-birthday-cake  w3-xxlarge w3-text-blue"></i></td>
+				<td class="one"><b>Birthday</b></td>
+				<td><input placeholder="Birthday" name="birthday" id="birthday" style="width: 150%; border-radius: 25px;" class="form-control w3-input"
+					 type="text" value="{{userdetails.birthday}}" [(ngModel)]="userdetails.birthday" required #birthday="ngModel" />
+					  <div [hidden]="birthday.valid || birthday.pristine" >
+						Birthday required
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td><i class="fa fa-envira  w3-xxlarge w3-text-blue"></i></td>
+				<td class="one"><b>Creation Date</b></td>
+				<td><input placeholder="Creation Date" name="creationDate" id="creationDate" style="width: 150%; border-radius: 25px;" class="form-control w3-input"
+					 type="text" value="{{userdetails.creationDate}}" [(ngModel)]="userdetails.creationDate" required #creationDate="ngModel" />
+					  <div [hidden]="creationDate.valid || creationDate.pristine" >
+						Creation Date required
+					</div>
+				</td>	 
+			</tr>
+			<tr>
+				<td><i class="fa fa-repeat  w3-xxlarge w3-text-blue"></i></td>
+				<td class="one"><b>Last Modified Date</b></td>
+				<td><input placeholder="Last Modified Date" name="updateDate" id="updateDate" style="width: 150%; border-radius: 25px;" class="form-control w3-input"
+					 type="text" value="{{userdetails.updateDate}}" [(ngModel)]="userdetails.updateDate" required #updateDate="ngModel"/>
+					  
+					 <div [hidden]="updateDate.valid || updateDate.pristine" >
+						Last Modified Date required
+					</div>
+				</td>
+
+			</tr>
+			<tr>
+				<td><i class="fa fa-universal-access  w3-xxlarge w3-text-blue"></i></td>
+				<td class="one"><b>Gender</b></td>
+				<td><input placeholder="Gender" name="gender" id="gender" style="width: 150%; border-radius: 25px;" class="form-control w3-input" type="text"
+					 value="{{userdetails.gender}}" [(ngModel)]="userdetails.gender" required #gender="ngModel" />
+				<div [hidden]="gender.valid || gender.pristine" >
+						Gender required
+					</div>
+				</td>
+
+			</tr>
+			<tr>
+				<td><i class="fa fa-hand-o-right  w3-xxlarge w3-text-blue"></i></td>
+				<td class="one"><b>User Id</b></td>
+				<td><input placeholder="User ID" name="userId" id="userId" style="width: 150%; border-radius: 25px;" class="form-control w3-input" type="text"
+					 value="{{userdetails.id}}" required /></td>
+			</tr>
+			<tr>
+				<td><i class="material-icons  w3-xxlarge w3-text-blue">perm_identity</i></td>
+				<td class="one"><b>Role</b></td>
+				<td><input placeholder="Role" name="role" id="role" style="width: 150%; border-radius: 25px;" class="form-control w3-input" type="text"
+					 value="{{userdetails.role}}" required/></td>
+			</tr>
+		</table>
+
+		<input type="submit" value="Save" name="save" class="w3-btn w3-blue" />
+		<input type="submit" value="Update" name="update" class="w3-btn w3-blue" />
+	</form>
+</div>

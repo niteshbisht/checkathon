@@ -1,0 +1,42 @@
+<div class="container">
+	<!-- <div *ngIf="userdetails?.flag==false">
+		<h3 class="w3-text-teal">New Registration Found... Want to keep the following settings?</h3>
+	</div> -->
+	<!-- <h1 class="w3-text-blue">Welcome {{userdetails?.username}}</h1> -->
+	<form name="grieveForm" #grieveForm="ngForm" (submit)="formSubmit()">
+		<table style="border-collapse: collapse;border-spacing: 10px;">
+			<tr>
+				<td><i class="fa fa-location-arrow  w3-xxlarge w3-text-blue"></i></td>
+				<td class="one"><b><label for="state" >Region</label></b></td>
+				<td>
+				<select>
+  					<option *ngFor="let state of states.names" [value]="selectedState" #state="ngModel">{{state.name}}</option>
+  				</select>
+				</td>
+			</tr>
+			<!-- <input type="hidden" value="userdetails?.flag" [(ngModel)]="userdetails.flag" #flag="ngModel" name="flag" id="flag"/>
+			<input type="hidden" value="userdetails?.providerUserId" 
+			[(ngModel)]="userdetails.providerUserId" #providerUserId="ngModel" name="providerUserId" providerUserId="providerUserId"/> -->
+		</table>	
+		<!-- <div *ngIf="userdetails?.role==='admin'">
+				<input type="button" (click) ="viewuserdetailpage()" class="w3-btn w3-blue" value="Click Here to View Users"/>
+		</div>
+		
+		<div *ngIf="providerCookie!=''">
+			<input type="button" (click) ="logOut()" class="w3-btn w3-blue" value="Logout"/>
+		</div>
+
+		<br/>
+			<input type="button" value="Click To Enable Editing" name="enablebutton" (click)="enableFieldEdit()" class="w3-btn w3-blue"/>
+		<br/>		
+		<div *ngIf="userdetails?.flag==false">
+			<input [disabled]="detailsForm.invalid" type="submit" value="Save Fields" name="save" class="w3-btn w3-blue"/>
+		</div>
+		<div *ngIf="userdetails?.flag==true">
+			<input [disabled]="detailsForm.invalid" type="submit" value="Update Fields" name="update" class="w3-btn w3-blue"/>
+		</div>
+		<div *ngIf="savesuccessFlag==true">
+			<h3>Details Successfully Saved</h3>
+		</div> -->
+	</form>
+</div>

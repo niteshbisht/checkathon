@@ -1,0 +1,13 @@
+/springsocial/bin/
+/springsocial/.gradle/
+
+/springsocial/.classpath
+
+/springsocial/.project
+/springsocial/.settings/
+/angular/node_modules
+
+
+
+/angular/e2e
+/angular/.settings

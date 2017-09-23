@@ -1,0 +1,144 @@
+<div>
+		<div class="container login-wrap">
+			<div class="w3-border-bottom">
+				<button class="w3-bar-item w3-button w3-white" onclick="openLoginTab()"
+					style="width: 50%; float: left;">
+					<h4>Login</h4>
+				</button>
+				<button class="w3-bar-item w3-button w3-white" onclick="openRegisterTab()"
+					style="width: 50%;">
+					<h4>Register</h4>
+				</button>
+			</div>
+			<div id="login" style="padding: 10% 15% 10% 15%;">
+				<form class="loginForm" action="/auth/normaluser" method='POST'
+					name="loginForm" id="loginForm">
+					<input type="hidden" name="${_csrf.parameterName}"
+						value="${_csrf.token}" />
+					<table style="width: 100%;">
+						<tr>
+							<td style="padding-bottom: 10%; padding-left: 2%;"><i
+								class="fa fa-user  w3-xxlarge w3-text-blue"></i></td>
+							<td style="padding-bottom: 10%; padding-left: 2%;"><input
+								placeholder="Username" class="w3-input" name="j_username"
+								style="border-radius: 25px;" type="text" /></td>
+						</tr>
+						<tr>
+							<td style="padding-bottom: 10%; padding-left: 2%;"><i
+								class="fa fa-lock w3-xxlarge w3-text-blue"></i></td>
+							<td style="padding-bottom: 10%; padding-left: 2%;"><input
+								type="password" style="border-radius: 25px;"
+								placeholder="Password" class="w3-input" name="j_password" /></td>
+						</tr>
+					</table>
+					<br /> <input type="submit" value="Login" name="login"
+						class="w3-button w3-blue"
+						style="padding: 15px 20px; border-radius: 25px; width: 100%;" />
+					<br /> <br /> <br />
+				</form>
+				<br />
+				<br/>
+				<div class="col-md-12 col-sm-12 col-xs-12">
+					<a style="background-color: white;" data-toggle="modal"
+						data-target="#forgotPasswordModal"><b>Forget Password?</b></a>
+				</div>
+				
+				<ul style="border-collapse: separate; border-spacing: 2px"
+					class="social-network social-circle">
+					<li><a href="/statelesssocial/auth/linkedin" class="icoLinkedin"
+						title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+					<li><a href="/statelesssocial/auth/facebook" class="icoFacebook"
+						title="Facebook"><i class="fa fa-facebook"></i></a></li>
+					<li><a href="/statelesssocial/auth/google?scope=https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
+						class="icoGoogle" title="Google +"><i
+							class="fa fa-google-plus"></i></a></li>
+
+				</ul>
+						
+			</div>
+			<div id="register" style="display: none; padding: 10% 15% 10% 15%;">
+
+				<form class="registerForm" name="registerForm" id="registerForm">
+					<table style="width: 100%;">
+						<tr>
+							<td style="padding-bottom: 10%; padding-left: 2%;"><i
+								class="fa fa-user  w3-xxlarge w3-text-blue"></i></td>
+							<td style="padding-bottom: 10%; padding-left: 2%;">
+							<input placeholder="First Name" [(ngModel)]="regmodel.fname" name="fname" required
+								style="width: 100%; border-radius: 25px;" class="w3-input"
+								type="text" /></td>
+						</tr>
+						<tr>
+							<td style="padding-bottom: 10%; padding-left: 2%;"><i
+								class="fa fa-user  w3-xxlarge w3-text-blue"></i></td>
+							<td style="padding-bottom: 10%; padding-left: 2%;"><input
+								placeholder="Last Name" [(ngModel)]="regmodel.lname" name="lname" required
+								style="width: 100%; border-radius: 25px;" class="w3-input"
+								type="text" /></td>
+						</tr>
+						
+						<tr>
+								<td style="padding-bottom: 10%; padding-left: 2%;"><i
+									class="fa fa-user  w3-xxlarge w3-text-blue"></i></td>
+								<td style="padding-bottom: 10%; padding-left: 2%;"><input
+									placeholder="User Name" [(ngModel)]="regmodel.uname" name="uname" required
+									style="width: 100%; border-radius: 25px;" class="w3-input"
+									type="text" /></td>
+								<td>
+										<input type="button" value="Validate User" name="validate"
+										class="w3-button w3-blue"
+										style="padding: 15px 20px; border-radius: 25px; width: 100%;" (click)="validateUser()" /> <br />			
+								</td>	
+						</tr>
+
+
+						<tr>
+							<td style="padding-bottom: 10%; padding-left: 2%;"><i
+								class="w3-xxlarge w3-text-blue fa fa-envelope-o"></i></td>
+							<td style="padding-bottom: 10%; padding-left: 2%;"><input
+								placeholder="Email Id" [(ngModel)]="regmodel.email" name="email" required style="width: 100%; border-radius: 25px;"
+								class="w3-input" type="text" /></td>
+						</tr>
+						<tr>
+							<td style="padding-bottom: 10%; padding-left: 2%;"><i
+								class="fa fa-lock w3-xxlarge w3-text-blue"></i></td>
+							<td style="padding-bottom: 10%; padding-left: 2%;"><input
+								placeholder="Password" [(ngModel)]="regmodel.passwd" name="passwd" required style="width: 100%; border-radius: 25px;"
+								class="w3-input" type="password" /></td>
+						</tr>
+						<tr>
+							<td style="padding-bottom: 10%; padding-left: 2%;"><i
+								class="fa fa-lock w3-xxlarge w3-text-blue"></i></td>
+							<td style="padding-bottom: 10%; padding-left: 2%;"><input
+								placeholder="Confirm Password" [(ngModel)]="regmodel.cpasswd" name="cpasswd" required
+								style="width: 100%; border-radius: 25px;" class="w3-input"
+								type="password" /></td>
+						</tr>
+						<tr>
+							<td style="padding-bottom: 10%; padding-left: 2%;"><i
+								class="w3-xxlarge fa fa-home w3-text-blue"></i></td>
+							<td style="padding-bottom: 10%; padding-left: 2%;"><input
+								placeholder="Location" [(ngModel)]="regmodel.location" name="location" required style="width: 100%; border-radius: 25px;"
+								class="w3-input" type="text" /></td>
+						</tr>
+					</table>
+				</form>
+				<br /> <input type="submit" value="Register" name="register"
+					class="w3-button w3-blue"
+					style="padding: 15px 20px; border-radius: 25px; width: 100%;" (click)="registerNewUser()" /> <br />
+				<br /> <br /> <br />
+				
+				<ul style="border-collapse: separate; border-spacing: 2px"
+					class="social-network social-circle">
+					<li><a href="/statelesssocial/auth/linkedin" class="icoLinkedin"
+						title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+					<li><a href="/statelesssocial/auth/facebook" class="icoFacebook"
+						title="Facebook"><i class="fa fa-facebook"></i></a></li>
+					<li><a href="/statelesssocial/auth/google?scope=https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
+						class="icoGoogle" title="Google +"><i
+							class="fa fa-google-plus"></i></a></li>
+
+				</ul>
+			</div>
+		</div>
+	</div>
