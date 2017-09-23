@@ -2,28 +2,15 @@ package com.server.beans;
 
 public class GrievPost {
 
-	private String stateid;
-	private String regid;
-	private String depid;
+	private String stateregdepid;
+	
 	private String grievanceString;
 	
-	public String getStateid() {
-		return stateid;
+	public String getStateregdepid() {
+		return stateregdepid;
 	}
-	public void setStateid(String stateid) {
-		this.stateid = stateid;
-	}
-	public String getRegid() {
-		return regid;
-	}
-	public void setRegid(String regid) {
-		this.regid = regid;
-	}
-	public String getDepid() {
-		return depid;
-	}
-	public void setDepid(String depid) {
-		this.depid = depid;
+	public void setStateregdepid(String stateregdepid) {
+		this.stateregdepid = stateregdepid;
 	}
 	public String getGrievanceString() {
 		return grievanceString;
