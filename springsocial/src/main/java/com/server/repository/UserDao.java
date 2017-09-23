@@ -2,7 +2,11 @@ package com.server.repository;
 
 import java.util.List;
 
+import com.server.beans.GrievPost;
 import com.server.beans.UserBean;
+import com.server.entity.Department;
+import com.server.entity.Region;
+import com.server.entity.State;
 import com.server.entity.User;
 import com.server.entity.UserDetails;
 
@@ -32,8 +36,15 @@ public interface UserDao{
 	
 	int countUserRegistered();
 	
+	int insertGrievData(GrievPost grievPost);
 
 	List<UserDetails> getAllUserList();
 
 	boolean updateUserTokens(String userName, String accessToken, String expireTime);
+
+	List<State> getStates();
+
+	List<Region> getRegions(String stateId);
+
+	List<Department> getDepartments(String stateId, String regId);
 }

@@ -1,7 +1,7 @@
 package com.server.repository;
 
+import java.util.ArrayList;
 import java.util.List;
-
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -10,7 +10,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.server.beans.DepartmentWrapper;
+import com.server.beans.GrievPost;
 import com.server.beans.UserBean;
+import com.server.entity.Department;
+import com.server.entity.GrievData;
+import com.server.entity.Region;
+import com.server.entity.State;
+import com.server.entity.StateRegToDepMapping;
+import com.server.entity.StateRegionMapping;
 import com.server.entity.User;
 import com.server.entity.UserDetails;
 
@@ -190,4 +198,72 @@ public class UserDaoImpl implements UserDao {
 		int update = createQuery.executeUpdate();
 		return update==1;
 	}
+
+	@Override
+	@Transactional
+	public int insertGrievData(GrievPost grievPost) {
+		String stateid = grievPost.getStateregdepid();
+		GrievData gdata = new GrievData();
+		gdata.setGrievience(grievPost.getGrievanceString());
+		gdata.setStateregdepid(stateid);
+		Session session = this.sessionFactory.getCurrentSession();
+		return session.save(gdata)!=null?1:0;
+	}
+	
+	@Override
+	@Transactional
+	public List<State> getStates(){
+		Session session = this.sessionFactory.getCurrentSession();
+		Query<State> createQuery = session.createQuery("from State", State.class);
+		List<State> resultList = createQuery.getResultList();
+		return resultList;
+	}
+	
+	@Override
+	@Transactional
+	public List<Region> getRegions(String stateId){
+		Session session = this.sessionFactory.getCurrentSession();
+		Query<StateRegionMapping> createQuery = session.createQuery("from StateRegionMapping where stateid=:stateid", StateRegionMapping.class);
+		createQuery.setParameter("stateid", stateId);
+		List<StateRegionMapping> resultList = createQuery.getResultList();
+		List<String> regids = new ArrayList<>();
+		resultList.forEach(e->{
+			regids.add(e.getRegid());
+		});
+		Query<Region> createQueryReg = session.createQuery("from Region where id in (:idList)", Region.class);
+		createQueryReg.setParameter("idList", regids);
+		return createQueryReg.getResultList();
+	}
+	
+	@Override
+	@Transactional
+	public List<Department> getDepartments(String stateId,String regId){/*
+		Session session = this.sessionFactory.getCurrentSession();
+		
+		Query<StateRegionMapping> createQuery = session.createQuery("from StateRegionMapping where stateid=:stateid and regid=:regId", StateRegionMapping.class);
+		createQuery.setParameter("stateid", stateId);
+		createQuery.setParameter("regId", regId);
+		List<StateRegionMapping> resultList = createQuery.getResultList();
+		StateRegionMapping stateRegionMapping = resultList.get(0);
+		List<DepartmentWrapper> listDep = null;
+		if(null!=stateRegionMapping){
+			listDep = new ArrayList<>();
+			String stateToRegMapping = stateRegionMapping.getId();
+			Query<StateRegToDepMapping> createQueryStateRedToDep = session.createQuery("from StateRegToDepMapping where stateregid=:stateToRegMapping", StateRegToDepMapping.class);
+			createQuery.setParameter("stateToRegMapping", stateToRegMapping);
+			List<StateRegToDepMapping> stateRegDepMapping = createQueryStateRedToDep.getResultList();
+			List<String> depids = new ArrayList<>();
+			stateRegDepMapping.forEach(e->{
+				depids.add(e.getDepid());
+			});
+			Query<Department> createQueryDep = session.createQuery("from Region where id in (:depids)", Department.class);
+			createQueryDep.setParameter("depids", depids);
+			List<Department> depList = createQueryDep.getResultList();
+			DepartmentWrapper retObj = new DepartmentWrapper();
+			retObj.setDepList(depList);
+			retObj.setStateRegDepId(stateRegDepId);
+		}
+		return null;
+	*/
+		return null;}
 }
